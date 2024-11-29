@@ -46,9 +46,28 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+# @st.cache_resource(show_spinner=True)
+# def extract_model_names(
+#     models_info: Dict[str, List[Dict[str, Any]]],
+# ) -> Tuple[str, ...]:
+#     """
+#     Extract model names from the provided models information.
+
+#     Args:
+#         models_info (Dict[str, List[Dict[str, Any]]]): Dictionary containing information about available models.
+
+#     Returns:
+#         Tuple[str, ...]: A tuple of model names.
+#     """
+#     logger.info("Extracting model names from models_info")
+#     model_names = tuple(model["name"] for model in models_info["models"])
+#     logger.info(f"Extracted model names: {model_names}")
+#     return model_names
+
+
 @st.cache_resource(show_spinner=True)
 def extract_model_names(
-    models_info: Dict[str, List[Dict[str, Any]]],
+    _models_info: Dict[str, List[Dict[str, Any]]],
 ) -> Tuple[str, ...]:
     """
     Extract model names from the provided models information.
@@ -60,7 +79,7 @@ def extract_model_names(
         Tuple[str, ...]: A tuple of model names.
     """
     logger.info("Extracting model names from models_info")
-    model_names = tuple(model["name"] for model in models_info["models"])
+    model_names = tuple(model["model"] for model in _models_info["models"])
     logger.info(f"Extracted model names: {model_names}")
     return model_names
 
